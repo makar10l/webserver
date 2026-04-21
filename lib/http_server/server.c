@@ -25,5 +25,7 @@ int server_process(server_t* server){
     socket_accept(&(server->server_socket));
     socket_read(&(server->server_socket), 1024);
     socket_send(&(server->server_socket), server->static_index_file, server->static_index_file_size);
+    server->server_socket.req_buffer[1024] = '\0';
+    printf("%s\n", server->server_socket.req_buffer);
     return 0;
 }

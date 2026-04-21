@@ -23,7 +23,8 @@ socket_t socket_create(int port, int domain, in_addr_t input_addr){
     sock.client_rules_size = sizeof(sock.client_rules);
 
     sock.req_buffer = NULL;
-
+    int opt = 1;
+    setsockopt(sock.sock_fd, SOL_SOCKET, SO_REUSEADDR, &opt, sizeof(opt));
     int sock_bind = bind(sock.sock_fd, (struct sockaddr*)&sock.sock_rules, sock.rules_size);
     if(sock_bind == -1) {
         close(sock.sock_fd);

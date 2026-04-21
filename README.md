@@ -18,6 +18,7 @@ make run
 # TODO: 
 1. Normal static files parser
 2. JSON settings
+3. Multithearding(maybe)
 
 # Special thanks
 Robotron(just cool guy)
