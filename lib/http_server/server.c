@@ -3,6 +3,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include "http_headers.h"
+#include "parser.h"
 server_t server_create(char* static_file_path, int port){
     FILE* index = fopen(static_file_path,"rb");
     fseek(index, 0, SEEK_END);   
