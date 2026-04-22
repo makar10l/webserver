@@ -1,4 +1,4 @@
-# webserver
+# Web Server
 HTTP server writed in C using POSIX sockets
 
 # How to use it?
