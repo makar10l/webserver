@@ -11,7 +11,7 @@ const char* HTTP_METHODS_STRING[HTTP_METHOD_COUNT] = {"GET", "POST", "UNKOWN"};
 const HTTP_METHOD HTTP_METHODS_LIST[HTTP_METHOD_COUNT] = {HTTP_GET, HTTP_POST, HTTP_UNKOWN};
 typedef struct{
     HTTP_METHOD method;
-    char* filename;
+    char filename[64];
     int filename_size; 
 } http_parser_result;
 
