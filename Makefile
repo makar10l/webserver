@@ -1,6 +1,6 @@
 CC = clang
 TARGET = server
-SRCS = src/main.c lib/socket/socket.c  lib/http_server/server.c
+SRCS = src/main.c lib/socket/socket.c  lib/http_server/server.c lib/http_server/http_parser/parser.c
 CFLAGS = -Wall -Wextra -O2 -I./lib/socket -I./lib/http_server  -I./lib/http_server/http_parser
 OBJS = $(SRCS:.c=.o)
 
@@ -16,5 +16,9 @@ clean:
 	rm -f $(OBJS)
 run: $(TARGET)
 	./$(TARGET)
+re:
+	$(MAKE) clean
+	$(MAKE) all
+	$(MAKE) clean
 
-.PHONY: all clean run
+.PHONY: all clean run re

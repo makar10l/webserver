@@ -5,9 +5,7 @@
 #define PORT 8000
 
 int main(){
+	fprintf(stderr, "DEBUG: Checkpoint 1");
 	server_t server = server_create("static/index.html", PORT);
-    
-	while(1){
-		server_process(&server);
-	}
+	server_process(&server);
 }

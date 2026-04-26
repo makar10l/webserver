@@ -20,13 +20,13 @@ server_t server_create(char* static_file_path, int port){
     socket_listen(&server.server_socket, 3);
     return server;
 }
-//парсер долежн возвращать статус и стркоу файла(имя) 
-// сервак ОБЯЗАН сам найти файл у себя и если не находит скинуть на клиента 404 no found 
+
 int server_process(server_t* server){
     socket_accept(&(server->server_socket));
     socket_read(&(server->server_socket), 1024);
     socket_send(&(server->server_socket), server->static_index_file, server->static_index_file_size);
     server->server_socket.req_buffer[1024] = '\0';
-    printf("%s\n", server->server_socket.req_buffer);
+    http_parser_result hh = http_parse_request(server->server_socket.req_buffer, 1024);
+    printf("HELLO FROM HELL %s", hh.filename);
     return 0;
 }
