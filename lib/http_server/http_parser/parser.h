@@ -17,5 +17,4 @@ typedef struct{
 } http_parser_result;
 
 http_parser_result http_parse_request(char* req_head, int head_size);
-//idk
 #endif

@@ -3,9 +3,7 @@
 #include "socket.h"
 typedef struct{
     socket_t server_socket;
-    //some http entity like parser;
-    char* static_index_file;
-    int static_index_file_size;
+    char* static_files_path;
     int return_error;
 } server_t;
 

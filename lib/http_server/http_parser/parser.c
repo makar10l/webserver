@@ -3,7 +3,6 @@
 #include "parser.h"
 const char* HTTP_METHODS_STRING[HTTP_METHODS_COUNT] = {"GET", "POST", "UNKOWN"};
 const HTTP_METHOD HTTP_METHODS_LIST[HTTP_METHODS_COUNT] = {HTTP_GET, HTTP_POST, HTTP_UNKOWN};
-//change this bullshit(just merge it to one function, KISS)
 http_parser_result http_parse_request(char* header, int header_size){
     int head_size = 0;
     char* head = NULL;
@@ -14,11 +13,7 @@ http_parser_result http_parse_request(char* header, int header_size){
             break;
         }
     }
-    //if(head_size == 0) return NULL;
-
     head = malloc(head_size);
-    //if(head == NULL) return NULL;
-
     memcpy(head, header, head_size);
     head[head_size] = '\0';
     //NEW
