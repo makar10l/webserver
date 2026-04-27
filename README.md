@@ -9,8 +9,7 @@ Just put your shitty frontend page into static and use make && make run to start
 ```bash
 git clone https:/github.com/makar10l/webserver
 cd webserver
-rm -rf static # if you wanna not start server with my static
-cp -r ~/static webserver/
+cp -r ~/static webserver/user_static #DONT TOUCH(pls) static FOLDER THERE ARE SYSTEM FILES
 make
 make run
 ```
