@@ -68,7 +68,7 @@ int socket_accept(socket_t* sock){
 
 int socket_read(socket_t* sock, int data_len){
     if(sock->client_fd <= 0) return -5;
-
+    if(data_len < 1) return -6;
     free(sock->req_buffer);
     sock->req_buffer = malloc(data_len); // риллок добавить надо
     if(sock->req_buffer == NULL) return -2;
