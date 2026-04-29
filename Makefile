@@ -1,7 +1,7 @@
 CC = clang
 TARGET = server
-SRCS = src/main.c lib/socket/socket.c  lib/http_server/server.c lib/http_server/http_parser/parser.c lib/http_server/file_searcher.c
-CFLAGS = -Wall -Wextra -O2 -I./lib/socket -I./lib/http_server  -I./lib/http_server/http_parser
+SRCS = src/main.c lib/socket/socket.c  lib/http_server/server.c lib/http_server/http_parser/parser.c lib/http_server/file_searcher/file_searcher.c
+CFLAGS = -Wall -Wextra -O2 -I./lib/socket -I./lib/http_server  -I./lib/http_server/http_parser -I./lib/http_server/file_searcher/
 OBJS = $(SRCS:.c=.o)
 
 all: $(TARGET)
