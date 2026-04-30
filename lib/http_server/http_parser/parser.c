@@ -6,7 +6,6 @@ const HTTP_METHOD HTTP_METHODS_LIST[HTTP_METHODS_COUNT] = {HTTP_GET, HTTP_POST, 
 http_parser_result http_parse_request(char* header, int header_size){
     http_parser_result res;
     res.method = HTTP_UNKOWN;
-    res.filename = NULL;
     res.filename_size = 0;
 
     char* head = NULL;
