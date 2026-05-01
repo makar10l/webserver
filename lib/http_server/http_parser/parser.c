@@ -1,8 +1,12 @@
 #include <stdlib.h>
 #include <string.h>
 #include "parser.h"
+const int HTTP_METHODS_COUNT = 3;
+const int HTTP_METHOD_SIZE = 16;
+const int HTTP_MAX_HEAD_SIZE = 64;
 const char* HTTP_METHODS_STRING[HTTP_METHODS_COUNT] = {"GET", "POST", "UNKOWN"};
 const HTTP_METHOD HTTP_METHODS_LIST[HTTP_METHODS_COUNT] = {HTTP_GET, HTTP_POST, HTTP_UNKOWN};
+
 http_parser_result http_parse_request(char* header, int header_size){
     http_parser_result res;
     res.method = HTTP_UNKOWN;

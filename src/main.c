@@ -3,10 +3,10 @@
 #include "socket.h"
 #include "server.h"
 #include "file_searcher.h"
-#define PORT 8000
+const int PORT = 8000;
 
 int main(){
-	FILE* hh =search_file("porn/");
+	FILE* hh =search_file("404.html");
 	if(hh == NULL){
 		printf("Hello");
 	}

@@ -1,8 +1,8 @@
 #include "file_searcher.h"
 #include <string.h>
 #include <stdio.h>
-#define VARIABLES 4
-#define MAX_PATH_LENGHT 256
+const int VARIABLES = 4;
+const int MAX_PATH_LENGHT = 256;
 const char* PATH_VARIABLES[] = {
     "static/%s",
     "user_static/%s",
