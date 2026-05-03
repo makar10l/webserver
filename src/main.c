@@ -6,13 +6,12 @@
 const int PORT = 8000;
 
 int main(){
-	FILE* hh =search_file("404.html");
+	FILE* hh =search_file("aboutme");
 	if(hh == NULL){
-		printf("Hello");
+		fprintf("Hello", stderr);
 	}
-	// fprintf(stderr, "DEBUG: Checkpoint 1");
-	// server_t server = server_create("static/index.html", PORT);
-	// while(1){
-	// server_process(&server);
-	// }
+	server_t server = server_create("static/index.html", PORT);
+	while(1){
+	 server_process(&server);
+	}
 }
