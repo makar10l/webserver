@@ -1,3 +1,5 @@
+#ifndef HTTP_HEADERS
+#define HTTP_HEADERS
 const char* HTML_HEADER =
     "HTTP/1.1 200 OK\r\n"
     "Content-Type: text/html; charset=utf-8\r\n"
@@ -15,3 +17,4 @@ const char* JAVASCRIPT_HEADER =
     "Content-Type: application/javascript; charset=utf-8\r\n"
     "Connection: close\r\n"
     "\r\n";
+#endif
