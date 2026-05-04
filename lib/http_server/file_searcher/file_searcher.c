@@ -14,10 +14,10 @@ static const int MAX_PATH_LENGHT = 256;
     @note %s means filename
 */
 static const char* PATH_VARIABLES[] = {
-    "static/%s",
-    "user_static/%s",
-    "static/%s/index.html",
-    "user_static/%s/index.html"
+    "user_static%s",
+    "static%s",
+    "user_static%s/index.html",
+    "static%s/index.html"
 };
 /*
     @var PATH_VARIABLES_COUNT
@@ -29,13 +29,13 @@ static const int PATH_VARIABLES_COUNT = sizeof(PATH_VARIABLES) / sizeof(char*);
     @see file_searcher.h
 */
 FILE* search_file(char* filename){
+    if(strcmp(filename, "/") == 0) filename = "";
     struct stat filestat;
-    char fullpath[MAX_PATH_LENGHT] = {0};
+    char fullpath[MAX_PATH_LENGHT];
     FILE* searchable_file = NULL; /* output file */
     for(int index = 0; index < PATH_VARIABLES_COUNT; index++){
         memset(fullpath, 0, MAX_PATH_LENGHT ); /* clear fullpath array */
         snprintf(fullpath, MAX_PATH_LENGHT, PATH_VARIABLES[index], filename); /* generating fullpath from PATH_VARIABLE and filename*/
-        fprintf(stderr, "%s\n", fullpath);
 
         stat(fullpath, &filestat); 
         

@@ -80,5 +80,5 @@ return values :
                 -1 OS error
                 -5 client fd error
                 -2 cannot alocate memory*/
-int socket_send(socket_t* sock, char* send_data, int data_len);
+int socket_send(socket_t* sock, const char* send_data, int data_len);
 #endif

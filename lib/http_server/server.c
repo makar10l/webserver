@@ -16,13 +16,33 @@ server_t server_create(int port){
 int server_process(server_t* server){
     socket_accept(&(server->server_socket));
     socket_read(&(server->server_socket), 1024);
+
     http_parser_result parse_res = http_parse_request(server->server_socket.req_buffer, 1024);
+    fprintf(stderr, "FILE REQUEST:%s\n\n", parse_res.filename);
+
     FILE* static_file = search_file(parse_res.filename);
-    fprintf(stderr, "%s", parse_res.filename);
-    char static_file_buffer[1024];
-    if(static_file == NULL){ fprintf(stderr, "damn");return -1; fprintf(stderr, "damn");}
-    fread(static_file_buffer, 1024, 1, static_file);
-    fprintf(stderr, "%s", static_file_buffer);
-    socket_send(&(server->server_socket), static_file_buffer, strlen(static_file_buffer));
+    if(static_file == NULL) return -1;
+
+    switch(parse_res.extens){
+        case HTML:
+            socket_send(&(server->server_socket), HTML_HEADER, strlen(HTML_HEADER));
+            break;
+        case CSS:
+            socket_send(&(server->server_socket), CSS_HEADER, strlen(CSS_HEADER)); 
+            break;
+        case JS:
+            socket_send(&(server->server_socket), JAVASCRIPT_HEADER, strlen(JAVASCRIPT_HEADER)); 
+            break;
+        case ICO:
+            socket_send(&(server->server_socket), ICON_HEADER, strlen(ICON_HEADER)); 
+            break;
+        default:
+            socket_send(&(server->server_socket), HTML_HEADER, strlen(HTML_HEADER));
+    }
+    
+    char static_file_buffer[128 * 1024];
+    memset(static_file_buffer, 0, (128 * 1024));
+    size_t file_size = fread(static_file_buffer, 1, (128 * 1024), static_file);
+    socket_send(&(server->server_socket), static_file_buffer, file_size);
     socket_client_close(&(server->server_socket));
 }

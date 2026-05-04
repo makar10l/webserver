@@ -78,7 +78,7 @@ int socket_read(socket_t* sock, int data_len){
     return 0;
 }
 
-int socket_send(socket_t* sock, char* send_data, int data_len){
+int socket_send(socket_t* sock, const char* send_data, int data_len){
     if(sock->client_fd <= 0) return -5;
 
     int sock_send = send(sock->client_fd, send_data, data_len, 0);

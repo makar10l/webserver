@@ -1,11 +1,16 @@
 #include <stdlib.h>
 #include <string.h>
 #include "parser.h"
+#include <stdio.h>
 const int HTTP_METHODS_COUNT = 3;
 const int HTTP_METHOD_SIZE = 16;
 const int HTTP_MAX_HEAD_SIZE = 64;
 const char* HTTP_METHODS_STRING[HTTP_METHODS_COUNT] = {"GET", "POST", "UNKOWN"};
 const HTTP_METHOD HTTP_METHODS_LIST[HTTP_METHODS_COUNT] = {HTTP_GET, HTTP_POST, HTTP_UNKOWN};
+
+const int EXTENSIONS_COUNT = 5; 
+const char* FILE_EXTENSIONS_STRING[EXTENSIONS_COUNT] = {"html", "css", "js", "jpg", "ico"};
+const FILE_EXTENSION FILE_EXTENSIONS_LIST[EXTENSIONS_COUNT] = {HTML, CSS, JS, JPG, ICO};
 
 http_parser_result http_parse_request(char* header, int header_size){
     http_parser_result res;
@@ -60,5 +65,19 @@ http_parser_result http_parse_request(char* header, int header_size){
         res.filename[i - head_pos] = head[i]; // normalizing index in [i - head_pos]
     }
     free(head);
+
+    //getting file extension
+    char* filename_pos = res.filename;
+    for(; (*filename_pos) != '\0'; filename_pos++) if(*filename_pos == '.') break;
+    if(*filename_pos == '\0') res.extens = UNKOWN;
+    filename_pos++;
+
+    fprintf(stderr, "FIRST : %s\n",filename_pos);
+    for(int i = 0; i < EXTENSIONS_COUNT; i++){
+        fprintf(stderr, "\n%d : %s\n", i, FILE_EXTENSIONS_STRING[i]);
+        if(strcmp(filename_pos, FILE_EXTENSIONS_STRING[i]) == 0) {res.extens = FILE_EXTENSIONS_LIST[i]; break;}
+    }
+    
     return res;
 }
+

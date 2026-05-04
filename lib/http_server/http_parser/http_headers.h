@@ -17,4 +17,9 @@ const char* JAVASCRIPT_HEADER =
     "Content-Type: application/javascript; charset=utf-8\r\n"
     "Connection: close\r\n"
     "\r\n";
+const char* ICON_HEADER =
+    "HTTP/1.1 200 OK\r\n"
+    "Content-Type: image/x-icon\r\n"
+    "Connection: close\r\n"
+    "\r\n";
 #endif

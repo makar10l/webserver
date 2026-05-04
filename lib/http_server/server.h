@@ -24,5 +24,4 @@ server_t server_create(int port);
     @todo retvals
 */
 int server_process(server_t* server);
-int server_close();
 #endif
